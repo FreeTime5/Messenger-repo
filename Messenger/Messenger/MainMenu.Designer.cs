@@ -35,6 +35,7 @@ namespace Messenger
             startDialogueButton = new Button();
             statusLabel = new Label();
             contactsLabel = new Label();
+            logOutButton = new Button();
             SuspendLayout();
             // 
             // usersComboBox
@@ -90,12 +91,22 @@ namespace Messenger
             contactsLabel.TabIndex = 4;
             contactsLabel.Text = "Contacts";
             // 
+            // logOutButton
+            // 
+            logOutButton.Location = new Point(639, 405);
+            logOutButton.Name = "logOutButton";
+            logOutButton.Size = new Size(94, 48);
+            logOutButton.TabIndex = 5;
+            logOutButton.Text = "Log out";
+            logOutButton.UseVisualStyleBackColor = true;
+            // 
             // mainMenuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(253, 244, 255);
             ClientSize = new Size(732, 453);
+            Controls.Add(logOutButton);
             Controls.Add(contactsLabel);
             Controls.Add(statusLabel);
             Controls.Add(startDialogueButton);
@@ -116,5 +127,6 @@ namespace Messenger
         private Button startDialogueButton;
         private Label statusLabel;
         private Label contactsLabel;
+        private Button logOutButton;
     }
 }

@@ -23,6 +23,7 @@ namespace MessLibrary
 
         public bool Online { get; set; }
 
+        [MaxLength(12)]
         public string LastOnline { get; set; }
 
         public User() { }
@@ -30,7 +31,7 @@ namespace MessLibrary
         {
             Username = username;
             Password = password;
-            LastOnline = DateTime.Now.ToString();
+            LastOnline = DateTime.Now.ToString("dd-MM, hh:mm");
             Online = true;
         }
     }

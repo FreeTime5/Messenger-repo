@@ -8,7 +8,7 @@ namespace Messenger
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        public User Writter { get; private set; }
+        public User Sender { get; private set; }
         public User Reciver { get; private set; }
         /// <summary>
         /// Clean up any resources being used.
@@ -22,11 +22,14 @@ namespace Messenger
             }
             base.Dispose(disposing);
         }
-        public correspondenceForm(User writter, User reciver)
+        public correspondenceForm(User sender, User reciver)
         {
             InitializeComponent();
-            Writter = writter;
+            Reciver = sender;
             Reciver = reciver;
+            pageLayoutPanel.ControlAdded += pageLayoutPanel_ControlAdded;
+            pageLayoutPanel.ControlRemoved += pageLayoutPanel_ControlRemoved;
+            pageLayoutPanel.VerticalScroll.Value = pageLayoutPanel.VerticalScroll.Maximum;
         }
         #region Windows Form Designer generated code
 
@@ -36,28 +39,23 @@ namespace Messenger
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewItem listViewItem1 = new ListViewItem("");
-            ListViewItem listViewItem2 = new ListViewItem("");
-            messegeTestBox = new TextBox();
+            messageTextBox = new TextBox();
             sendMessageButton = new Button();
-            dialogueListView = new ListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
             online = new Label();
             menuButton = new Button();
             usernameLabel = new Label();
             dateOnlineLabel = new Label();
+            pageLayoutPanel = new FlowLayoutPanel();
             SuspendLayout();
             // 
-            // messegeTestBox
+            // messageTextBox
             // 
-            messegeTestBox.BackColor = SystemColors.Menu;
-            messegeTestBox.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            messegeTestBox.Location = new Point(0, 414);
-            messegeTestBox.Name = "messegeTestBox";
-            messegeTestBox.Size = new Size(660, 38);
-            messegeTestBox.TabIndex = 0;
+            messageTextBox.BackColor = SystemColors.Menu;
+            messageTextBox.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            messageTextBox.Location = new Point(0, 414);
+            messageTextBox.Name = "messageTextBox";
+            messageTextBox.Size = new Size(660, 38);
+            messageTextBox.TabIndex = 0;
             // 
             // sendMessageButton
             // 
@@ -67,24 +65,7 @@ namespace Messenger
             sendMessageButton.TabIndex = 1;
             sendMessageButton.Text = "Send";
             sendMessageButton.UseVisualStyleBackColor = true;
-            // 
-            // dialogueListView
-            // 
-            dialogueListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            dialogueListView.Groups.AddRange(new ListViewGroup[] { listViewGroup1 });
-            dialogueListView.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2 });
-            dialogueListView.Location = new Point(0, 46);
-            dialogueListView.Name = "dialogueListView";
-            dialogueListView.Size = new Size(734, 362);
-            dialogueListView.TabIndex = 2;
-            dialogueListView.UseCompatibleStateImageBehavior = false;
-            dialogueListView.SelectedIndexChanged += listView1_SelectedIndexChanged;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "ColumnashfiasfhsiHeader";
+            sendMessageButton.Click += sendMessageButton_Click;
             // 
             // online
             // 
@@ -129,19 +110,31 @@ namespace Messenger
             dateOnlineLabel.Text = "Unknown";
             dateOnlineLabel.Click += label2_Click;
             // 
+            // pageLayoutPanel
+            // 
+            pageLayoutPanel.AutoScroll = true;
+            pageLayoutPanel.BackColor = Color.WhiteSmoke;
+            pageLayoutPanel.Location = new Point(12, 56);
+            pageLayoutPanel.Name = "pageLayoutPanel";
+            pageLayoutPanel.Size = new Size(708, 352);
+            pageLayoutPanel.TabIndex = 9;
+            pageLayoutPanel.ControlAdded += pageLayoutPanel_ControlAdded;
+            pageLayoutPanel.ControlRemoved += pageLayoutPanel_ControlRemoved;
+            // 
             // correspondenceForm
             // 
+            AllowDrop = true;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(253, 244, 255);
             ClientSize = new Size(732, 453);
+            Controls.Add(pageLayoutPanel);
             Controls.Add(dateOnlineLabel);
             Controls.Add(usernameLabel);
             Controls.Add(menuButton);
             Controls.Add(online);
-            Controls.Add(dialogueListView);
             Controls.Add(sendMessageButton);
-            Controls.Add(messegeTestBox);
+            Controls.Add(messageTextBox);
             Name = "correspondenceForm";
             Text = "Messenger";
             Load += correspondenceForm_Load;
@@ -151,14 +144,12 @@ namespace Messenger
 
         #endregion
 
-        private TextBox messegeTestBox;
+        private TextBox messageTextBox;
         private Button sendMessageButton;
-        private ListView dialogueListView;
         private Label online;
         private Button menuButton;
         private Label usernameLabel;
         private Label dateOnlineLabel;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
+        private FlowLayoutPanel pageLayoutPanel;
     }
 }

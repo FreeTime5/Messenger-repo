@@ -73,7 +73,7 @@ namespace Messenger
             using (var db = new PostgreConnection())
             {
                 db.UpdateUsers(CurrentUser);
-            }   
+            }
         }
     }
 }

@@ -72,3 +72,4 @@ C:\Users\yeutu\Desktop\C# apps\Messenger-repo\Messenger\Messenger\bin\Debug\net6
 C:\Users\yeutu\Desktop\C# apps\Messenger-repo\Messenger\Messenger\obj\Debug\net6.0-windows\Messenger.csproj.CopyComplete
 C:\Users\yeutu\Desktop\C# apps\Messenger-repo\Messenger\Messenger\obj\Debug\net6.0-windows\Messenger.genruntimeconfig.cache
 C:\Users\yeutu\Desktop\C# apps\Messenger-repo\Messenger\Messenger\obj\Debug\net6.0-windows\ref\Messenger.dll
+C:\Users\yeutu\Desktop\C# apps\Messenger-repo\Messenger\Messenger\bin\Debug\net6.0-windows\Siticone.Desktop.UI.dll

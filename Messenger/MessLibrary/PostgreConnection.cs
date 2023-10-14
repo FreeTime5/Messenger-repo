@@ -10,6 +10,18 @@ namespace MessLibrary
             _connection.Dispose();
         }
 
+        public void AddUser (User user)
+        {
+            _connection.Users.Add(user);
+            _connection.SaveChanges();
+        }
+
+        public void AddMessage (MessageInfo message)
+        {
+            _connection.Messages.Add(message);
+            _connection.SaveChanges();
+        }
+
         public void UpdateUsers(User user)
         {
             _connection.Users.Update(user);
@@ -32,6 +44,10 @@ namespace MessLibrary
             return _connection.Messages.Find(id);
         }
 
-        
+        public void RemoveMessage (MessageInfo message)
+        {
+            _connection.Messages.Remove(message);
+            _connection.SaveChanges();
+        }
     }
 }

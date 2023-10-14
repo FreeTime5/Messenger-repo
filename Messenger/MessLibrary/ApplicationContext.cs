@@ -7,7 +7,7 @@ namespace MessLibrary
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<MessageInfo> Messages { get; set; } = null!;
 
-        public ProgramContext()
+        public ProgramContext() 
         {
             Database.EnsureCreated();
         }

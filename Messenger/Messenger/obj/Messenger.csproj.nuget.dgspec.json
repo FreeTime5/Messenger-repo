@@ -47,6 +47,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.11, )"
+            },
+            "Siticone.Desktop.UI": {
+              "target": "Package",
+              "version": "[2.1.1, )"
             }
           },
           "imports": [
@@ -111,6 +115,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.11, )"
+            },
+            "Siticone.Desktop.UI": {
+              "target": "Package",
+              "version": "[2.1.1, )"
             }
           },
           "imports": [

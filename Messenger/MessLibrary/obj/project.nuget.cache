@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fqKIQ65Pg0NXTaXBqkgUaPd6TpsvIxEkhesiftS6VEHzk4s81FOGSwpTDTP2nEBN78/Gas9PI0BFP3dR+euAeA==",
+  "dgSpecHash": "I6KNYvCpoymCdtYI/ZEefDc4BEL1ekjRITB/oyPX1d3kzwOwLUIVP4Ux3lJUAa7dURFsE/YswmUQS9LOdWnfvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\yeutu\\Desktop\\C# apps\\Messenger-repo\\Messenger\\MessLibrary\\MessLibrary.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,19 @@
     "C:\\Users\\yeutu\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\yeutu\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
     "C:\\Users\\yeutu\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
+    "C:\\Users\\yeutu\\.nuget\\packages\\siticone.desktop.ui\\2.1.1\\siticone.desktop.ui.2.1.1.nupkg.sha512",
     "C:\\Users\\yeutu\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Siticone.Desktop.UI 2.1.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Siticone.Desktop.UI",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

@@ -1,4 +1,5 @@
 using MessLibrary;
+
 namespace Messenger
 {
     internal static class Program

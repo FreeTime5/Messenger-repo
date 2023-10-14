@@ -43,15 +43,7 @@ namespace Messenger
 
         }
 
-        private User? GetUser()
-        {
-            User? user;
-            using (var db = new ProgramContext())
-            {
-                user = db.Users.Find(usernameTextBox.Text);
-            }
-            return user;
-        }
+        
 
         private void singUpButton_Click(object sender, EventArgs e)
         {
@@ -64,10 +56,9 @@ namespace Messenger
             else
             {
                 user = new User(usernameTextBox.Text, passwordTextBox.Text);
-                using (var db = new ProgramContext())
+                using (var db = new PostgreConnection())
                 {
-                    db.Users.Add(user);
-                    db.SaveChanges();
+                    db.AddUser(user);
                 }
                 var form = new mainMenuForm(user);
                 this.Hide();
@@ -83,6 +74,16 @@ namespace Messenger
         private void usernameTextBox_Enter(object sender, EventArgs e)
         {
             
+        }
+
+        private User? GetUser()
+        {
+            User? user;
+            using (var db = new ProgramContext())
+            {
+                user = db.Users.Find(usernameTextBox.Text);
+            }
+            return user;
         }
     }
 }

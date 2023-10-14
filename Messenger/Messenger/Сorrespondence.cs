@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MessLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,6 +45,34 @@ namespace Messenger
             else
             {
                 dateOnlineLabel.Text = Reciver.LastOnline;
+            }
+        }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+
+        }
+
+        private void pageLayoutPanel_ControlAdded(object sender, ControlEventArgs e)
+        {
+            pageLayoutPanel.VerticalScroll.Value = pageLayoutPanel.VerticalScroll.Maximum;
+        }
+
+        private void pageLayoutPanel_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            pageLayoutPanel.VerticalScroll.Value = pageLayoutPanel.VerticalScroll.Maximum;
+        }
+
+        private void pageScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+        }
+
+        private void sendMessageButton_Click(object sender, EventArgs e)
+        {
+            var message = new MessageInfo(messageTextBox.Text, Sender, Reciver);
+            using (var db = new PostgreConnection())
+            {
+                db.AddMessage(message);
             }
         }
     }
