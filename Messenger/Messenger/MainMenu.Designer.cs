@@ -113,6 +113,7 @@ namespace Messenger
             Controls.Add(addContactLabel);
             Controls.Add(usersComboBox);
             Name = "mainMenuForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Messenger";
             FormClosing += mainMenuForm_FormClosing;
             Load += mainMenuForm_Load;

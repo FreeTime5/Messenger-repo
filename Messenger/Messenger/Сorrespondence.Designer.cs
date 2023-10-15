@@ -136,6 +136,7 @@ namespace Messenger
             Controls.Add(sendMessageButton);
             Controls.Add(messageTextBox);
             Name = "correspondenceForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Messenger";
             Load += correspondenceForm_Load;
             ResumeLayout(false);

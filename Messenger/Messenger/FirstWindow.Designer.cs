@@ -7,6 +7,22 @@ namespace Messenger
         ///  Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private Size _startSize;
+        private Size _startUsernameTextBoxSize;
+        private Size _startPasswordTextBoxSize;
+        private Size _startSingUpButtonSize;
+        private Size _startLogInButtonSize;
+        private Font _startTextFont;
+        private Font _startStatusLabelFont;
+        private Point _startUsernameTextBoxLocation;
+        private Point _startUsernameLabelLocation;
+        private Point _startPasswordTextBoxLocation;
+        private Point _startPasswordLabelLocation;
+        private Point _startLogInButtonLocation;
+        private Point _startSingUpButtonLocation;
+        private Point _startStatusLabelLocation;
+
+
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -35,9 +51,9 @@ namespace Messenger
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripTextBox1 = new ToolStripTextBox();
             toolStripMenuItem1 = new ToolStripMenuItem();
-            label1 = new Label();
+            usernameLabel = new Label();
             passwordTextBox = new TextBox();
-            label2 = new Label();
+            passwordLabel = new Label();
             logInButton = new Button();
             singUpButton = new Button();
             statusLabel = new Label();
@@ -47,7 +63,7 @@ namespace Messenger
             // usernameTextBox
             // 
             usernameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            usernameTextBox.Location = new Point(228, 88);
+            usernameTextBox.Location = new Point(250, 115);
             usernameTextBox.MaxLength = 20;
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(250, 34);
@@ -81,42 +97,42 @@ namespace Messenger
             toolStripMenuItem1.Size = new Size(211, 24);
             toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
-            // label1
+            // usernameLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(226, 57);
-            label1.Name = "label1";
-            label1.Size = new Size(99, 28);
-            label1.TabIndex = 2;
-            label1.Text = "Username";
-            label1.Click += label1_Click;
+            usernameLabel.AutoSize = true;
+            usernameLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameLabel.Location = new Point(250, 80);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(99, 28);
+            usernameLabel.TabIndex = 2;
+            usernameLabel.Text = "Username";
+            usernameLabel.Click += label1_Click;
             // 
             // passwordTextBox
             // 
             passwordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            passwordTextBox.Location = new Point(226, 162);
+            passwordTextBox.Location = new Point(250, 189);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.PasswordChar = '*';
-            passwordTextBox.Size = new Size(252, 34);
+            passwordTextBox.Size = new Size(250, 34);
             passwordTextBox.TabIndex = 3;
             // 
-            // label2
+            // passwordLabel
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(226, 131);
-            label2.Name = "label2";
-            label2.Size = new Size(93, 28);
-            label2.TabIndex = 4;
-            label2.Text = "Password";
+            passwordLabel.AutoSize = true;
+            passwordLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            passwordLabel.Location = new Point(250, 155);
+            passwordLabel.Name = "passwordLabel";
+            passwordLabel.Size = new Size(93, 28);
+            passwordLabel.TabIndex = 4;
+            passwordLabel.Text = "Password";
             // 
             // logInButton
             // 
             logInButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            logInButton.Location = new Point(291, 226);
+            logInButton.Location = new Point(315, 256);
             logInButton.Name = "logInButton";
-            logInButton.Size = new Size(115, 44);
+            logInButton.Size = new Size(120, 50);
             logInButton.TabIndex = 5;
             logInButton.Text = "Log in";
             logInButton.UseVisualStyleBackColor = true;
@@ -124,9 +140,9 @@ namespace Messenger
             // 
             // singUpButton
             // 
-            singUpButton.Location = new Point(300, 276);
+            singUpButton.Location = new Point(325, 316);
             singUpButton.Name = "singUpButton";
-            singUpButton.Size = new Size(97, 40);
+            singUpButton.Size = new Size(100, 40);
             singUpButton.TabIndex = 6;
             singUpButton.Text = "Sing up";
             singUpButton.UseVisualStyleBackColor = true;
@@ -136,7 +152,7 @@ namespace Messenger
             // 
             statusLabel.AutoSize = true;
             statusLabel.ForeColor = Color.Red;
-            statusLabel.Location = new Point(226, 199);
+            statusLabel.Location = new Point(250, 230);
             statusLabel.Name = "statusLabel";
             statusLabel.Size = new Size(0, 20);
             statusLabel.TabIndex = 7;
@@ -151,12 +167,15 @@ namespace Messenger
             Controls.Add(statusLabel);
             Controls.Add(singUpButton);
             Controls.Add(logInButton);
-            Controls.Add(label2);
+            Controls.Add(passwordLabel);
             Controls.Add(passwordTextBox);
-            Controls.Add(label1);
+            Controls.Add(usernameLabel);
             Controls.Add(usernameTextBox);
+            MinimumSize = new Size(750, 500);
             Name = "FirstWindow";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Messenger";
+            SizeChanged += FirstWindow_SizeChanged;
             contextMenuStrip1.ResumeLayout(false);
             contextMenuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -171,9 +190,9 @@ namespace Messenger
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripTextBox toolStripTextBox1;
         private ToolStripMenuItem toolStripMenuItem1;
-        private Label label1;
+        private Label usernameLabel;
         private TextBox passwordTextBox;
-        private Label label2;
+        private Label passwordLabel;
         private Button logInButton;
         private Button singUpButton;
         private Label statusLabel;

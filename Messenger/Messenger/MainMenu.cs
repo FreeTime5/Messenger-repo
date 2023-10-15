@@ -18,6 +18,11 @@ namespace Messenger
         {
             InitializeComponent();
             CurrentUser = user;
+            user.Online = true;
+            using (var db = new PostgreConnection())
+            {
+                db.UpdateUsers(user);
+            }
         }
 
         private void usersComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,6 +75,7 @@ namespace Messenger
         private void mainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             CurrentUser.Online = false;
+            CurrentUser.LastOnline = DateTime.Now.ToString("dd-MM, hh:mm");
             using (var db = new PostgreConnection())
             {
                 db.UpdateUsers(CurrentUser);
