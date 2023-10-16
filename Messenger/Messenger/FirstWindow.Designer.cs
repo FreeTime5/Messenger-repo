@@ -8,8 +8,7 @@ namespace Messenger
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         private Size _startSize;
-        private Size _startUsernameTextBoxSize;
-        private Size _startPasswordTextBoxSize;
+        private Size _startTextBoxSize;
         private Size _startSingUpButtonSize;
         private Size _startLogInButtonSize;
         private Font _startTextFont;
@@ -68,6 +67,8 @@ namespace Messenger
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(250, 34);
             usernameTextBox.TabIndex = 0;
+            usernameTextBox.KeyPress += usernameTextBox_KeyPress;
+            usernameTextBox.KeyUp += usernameTextBox_KeyUp;
             // 
             // contextMenuStrip1
             // 
@@ -106,7 +107,6 @@ namespace Messenger
             usernameLabel.Size = new Size(99, 28);
             usernameLabel.TabIndex = 2;
             usernameLabel.Text = "Username";
-            usernameLabel.Click += label1_Click;
             // 
             // passwordTextBox
             // 
@@ -116,6 +116,8 @@ namespace Messenger
             passwordTextBox.PasswordChar = '*';
             passwordTextBox.Size = new Size(250, 34);
             passwordTextBox.TabIndex = 3;
+            passwordTextBox.KeyPress += passwordTextBox_KeyPress;
+            passwordTextBox.KeyUp += passwordTextBox_KeyUp;
             // 
             // passwordLabel
             // 
@@ -156,7 +158,6 @@ namespace Messenger
             statusLabel.Name = "statusLabel";
             statusLabel.Size = new Size(0, 20);
             statusLabel.TabIndex = 7;
-            statusLabel.Click += statusLabel_Click;
             // 
             // FirstWindow
             // 

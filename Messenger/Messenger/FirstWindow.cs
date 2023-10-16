@@ -9,8 +9,7 @@ namespace Messenger
         {
             InitializeComponent();
             _startSize = Size;
-            _startUsernameTextBoxSize = usernameTextBox.Size;
-            _startPasswordTextBoxSize = passwordTextBox.Size;
+            _startTextBoxSize = usernameTextBox.Size;
             _startSingUpButtonSize = singUpButton.Size;
             _startLogInButtonSize = logInButton.Size;
             _startTextFont = usernameTextBox.Font;
@@ -25,23 +24,13 @@ namespace Messenger
             _startSingUpButtonLocation = singUpButton.Location;
         }
 
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statusLabel_Click(object sender, EventArgs e)
-        {
-            usernameTextBox.Text = "";
-        }
-
         private async void logInButton_Click(object sender, EventArgs e)
         {
+            if (usernameTextBox.Text.Length < 3 || passwordTextBox.Text.Length < 8)
+            {
+                statusLabel.Text = "Incorrect username or password length";
+                return;
+            }
             User? user = GetUser();
             if (user == null || user.Password != passwordTextBox.Text)
             {
@@ -65,6 +54,7 @@ namespace Messenger
 
         private void singUpButton_Click(object sender, EventArgs e)
         {
+
             User? user = GetUser();
             if (user != null)
             {
@@ -73,12 +63,7 @@ namespace Messenger
             }
             else
             {
-                user = new User(usernameTextBox.Text, passwordTextBox.Text);
-                using (var db = new PostgreConnection())
-                {
-                    db.AddUser(user);
-                }
-                var form = new mainMenuForm(user);
+                var form = new singUpForm(usernameTextBox.Text);
                 this.Hide();
                 form.ShowDialog();
                 passwordTextBox.Text = "";
@@ -86,15 +71,6 @@ namespace Messenger
                 statusLabel.Text = "";
                 this.Show();
             }
-        }
-        private void usernameTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void usernameTextBox_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private User? GetUser()
@@ -115,11 +91,10 @@ namespace Messenger
             singUpButton.Size = NewSizeOfButton(_startSingUpButtonSize);
             singUpButton.Font = NewFontOfTextControl(_startStatusLabelFont);
 
-            usernameTextBox.Size = NewSizeOfButton(_startUsernameTextBoxSize);
+            usernameTextBox.Size =  passwordTextBox.Size = NewSizeOfButton(_startTextBoxSize);
             usernameTextBox.Font = NewFontOfTextControl(_startTextFont);
-
-            passwordTextBox.Size = NewSizeOfButton(_startPasswordTextBoxSize);
             passwordTextBox.Font = NewFontOfTextControl(_startTextFont);
+
 
             usernameLabel.Font = NewFontOfTextControl(_startTextFont);
 
@@ -159,5 +134,43 @@ namespace Messenger
             double ratioY = (double)_startSize.Height / startControlLocation.Y;
             return new Point((int)(Size.Width / ratioX), (int)(Size.Height / ratioY));
         }
+
+        private void usernameTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down) && usernameTextBox.Text.Length >= 3)
+            {
+                Console.Beep();
+                passwordTextBox.Select();
+            }
+        }
+
+        private void passwordTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+            if (e.KeyCode == Keys.Enter && usernameTextBox.Text.Length >= 3)
+            {
+                Console.Beep();
+                logInButton_Click(sender, new EventArgs());
+            }
+            if (e.KeyCode == Keys.Up)
+                usernameTextBox.Select();
+        }
+
+        private void usernameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void passwordTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

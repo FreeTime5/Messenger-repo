@@ -1,4 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Siticone.Desktop.UI.WinForms;
+using System.Threading.Channels;
 
 namespace MessLibrary
 {
@@ -9,12 +12,15 @@ namespace MessLibrary
 
         public ProgramContext() 
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=messenger;Username=postgres;Password=I21EV0405postgre");
+            optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
         }
+       
     }
 }

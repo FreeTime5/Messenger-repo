@@ -5,11 +5,6 @@ namespace MessLibrary
     {
         private ProgramContext _connection = new ProgramContext();
 
-        public void Dispose()
-        {
-            _connection.Dispose();
-        }
-
         public void AddUser (User user)
         {
             _connection.Users.Add(user);
@@ -48,6 +43,11 @@ namespace MessLibrary
         {
             _connection.Messages.Remove(message);
             _connection.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _connection.Dispose();
         }
     }
 }
