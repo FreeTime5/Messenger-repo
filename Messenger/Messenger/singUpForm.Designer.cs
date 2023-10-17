@@ -175,7 +175,7 @@
             // singUpButton
             // 
             singUpButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            singUpButton.Location = new Point(320, 350);
+            singUpButton.Location = new Point(310, 350);
             singUpButton.Name = "singUpButton";
             singUpButton.Size = new Size(120, 50);
             singUpButton.TabIndex = 14;

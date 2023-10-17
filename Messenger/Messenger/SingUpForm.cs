@@ -23,9 +23,9 @@ namespace Messenger
 
             _startUsernameLabelLocation = usernameLabel.Location;
             _startSingUpButtonLocation = singUpButton.Location;
-            _startDistanceBetweenLabelAndTextBoxY = usernameLabel.Location.Y - usernameTextBox.Location.Y;
-            _startDistanceBetweenTextBoxAndLabelY = usernameTextBox.Location.Y - passwordLabel.Location.Y;
-            _startDistanceBetweenControlsX = usernameLabel.Location.X - firstNameLabel.Location.X;
+            _startDistanceBetweenLabelAndTextBoxY = usernameTextBox.Location.Y - usernameLabel.Location.Y;
+            _startDistanceBetweenTextBoxAndLabelY = passwordLabel.Location.Y - usernameTextBox.Location.Y;
+            _startDistanceBetweenControlsX = firstNameLabel.Location.X - usernameLabel.Location.X;
             usernameTextBox.Text = username;
         }
 
@@ -53,9 +53,23 @@ namespace Messenger
             usernameTextBox.Size = passwordTextBox.Size = confirmPasswordTextBox.Size = firstNameTextBox.Size = lastNameTextBox.Size = emailTextBox.Size = NewSizeOfButton(_startTextBoxSize);
             usernameTextBox.Font = passwordTextBox.Font = confirmPasswordTextBox.Font = firstNameTextBox.Font = lastNameTextBox.Font = emailTextBox.Font = NewFontOfTextControl(_startTextFont);
 
-            usernameLabel.Font = passwordLabel.Font = confirmPasswordLabel.Font = firstNameLabel.Font = lastNameLabel.Font = emailLabel.Font = NewFontOfTextControl(_startTextFont);
+            singUpButton.Font = usernameLabel.Font = passwordLabel.Font = confirmPasswordLabel.Font = firstNameLabel.Font = lastNameLabel.Font = emailLabel.Font = NewFontOfTextControl(_startTextFont);
+            singUpButton.Size = NewSizeOfButton(_startSingUpButtonSize);
+            singUpButton.Location = NewLocationOfFirstControl(_startSingUpButtonLocation);
 
             usernameLabel.Location = NewLocationOfFirstControl(_startUsernameLabelLocation);
+            firstNameLabel.Location = NewLocationOfControlsX(usernameLabel.Location);
+            usernameTextBox.Location = NewLocationOfControlsLABTY(usernameLabel.Location);
+            firstNameTextBox.Location = NewLocationOfControlsX(usernameTextBox.Location);
+            passwordLabel.Location = NewLocationOfControlsBTALY(usernameTextBox.Location);
+            lastNameLabel.Location = NewLocationOfControlsX(passwordLabel.Location);
+            passwordTextBox.Location = NewLocationOfControlsLABTY(passwordLabel.Location);
+            lastNameTextBox.Location = NewLocationOfControlsX(passwordTextBox.Location);
+            confirmPasswordLabel.Location = NewLocationOfControlsBTALY(passwordTextBox.Location);
+            emailLabel.Location = NewLocationOfControlsX(confirmPasswordLabel.Location);
+            confirmPasswordTextBox.Location = NewLocationOfControlsLABTY(confirmPasswordLabel.Location);
+            emailTextBox.Location = NewLocationOfControlsX(confirmPasswordTextBox.Location);
+
 
         }
 
@@ -79,11 +93,22 @@ namespace Messenger
             return new Point((int)(Size.Width / ratioX), (int)(Size.Height / ratioY));
         }
 
-        private Point NewLocationOfControls(Point startControlLocation)
+        private Point NewLocationOfControlsLABTY(Point startControlLocation)
         {
-            var ratioDistanceX = (double)Size.Width / _startSize.Width;
-            var ratioDistanceY = (double)Size.Height / _startSize.Height;
-            return new Point(startControlLocation.X * (int)ratioDistanceX, startControlLocation.Y * (int)ratioDistanceY);
+            var ratio = (float)Size.Height / _startSize.Height;
+            return new Point(startControlLocation.X, (int)(_startDistanceBetweenLabelAndTextBoxY * ratio) + startControlLocation.Y);
+        }
+
+        private Point NewLocationOfControlsBTALY(Point startControlLocation)
+        {
+            var ratio = (float)Size.Height / _startSize.Height;
+            return new Point(startControlLocation.X, (int)(_startDistanceBetweenTextBoxAndLabelY * ratio) + startControlLocation.Y);
+        }
+
+        private Point NewLocationOfControlsX(Point startControlLocation)
+        {
+            var ratio = (float)Size.Width / _startSize.Width;
+            return new Point(startControlLocation.X + (int)(_startDistanceBetweenControlsX * ratio), startControlLocation.Y);
         }
     }
 }
